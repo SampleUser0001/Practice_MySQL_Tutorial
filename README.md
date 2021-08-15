@@ -1,35 +1,27 @@
-# Template_PHP_MySQL_Nginx
+# Practice_MySQL_Tutorial
 
-PHP, MySQL, Nginxのテンプレート
+MySQLのお勉強をする。  
+~~[https://dev.mysql.com/doc/refman/8.0/ja/tutorial.html](https://dev.mysql.com/doc/refman/8.0/ja/tutorial.html)を試す。~~  
+phpMyAdminがあるので接続自体はできるが、シェルのほうが都合がいいのでそちらからどうにかしたい。
 
 ## 準備
 
-1. ```mysql/sample.env```をコピーし、```mysql/.env```ファイルを作成する。
-2. ```mysql/.env```ファイルを編集する。
+- .mylogin.cnfファイルを作成する。
+    - [ここ](https://sampleuser0001.github.io/cloud9_note/DB/MySQL.html#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%BD%9C%E6%88%90)を参考に作成する
+    - 事前にコンテナを起動して、practice_mysql_tutorial_db_1コンテナ内で実行する。
 
-## 起動
+## 実行
+
+```sh
+docker-compose up -d
+docker exec -it practice_mysql_tutorial_db_1 /bin/bash
+```
 
 ``` sh
-docker-compose up -d
+cd /tmp/sql
+sh sample.sh
 ```
-
-## URL
-
-[http://localhost:8080/index.php](http://localhost:8080/index.php)
-
-## 備考
-
-### PHPのログについて
-
-デフォルトの設定だとコンソールに出力される。ログの出力先はnginx/nginx.confに記載されている。下記設定。
-
-``` conf
-    access_log /var/log/nginx/access.log;
-    error_log  /var/log/nginx/error.log;
-```
-
-それぞれ /dev/stdoutと/dev/stderrにリンクが張られているため、両方ともコンソールに出力される。ファイルに出力させたい場合はログのパスを返るか、行を増やす。（複数指定できる。）
 
 ## 参考
 
-- [Qiita:DockerによるPHP開発環境構築（PHP + MySQL + Nginx）](https://qiita.com/nemui_/items/f911be7ffa4f29293fd5)
+- [第3章 チュートリアル:MySQL 8.0 リファレンスマニュアル](https://dev.mysql.com/doc/refman/8.0/ja/tutorial.html)
